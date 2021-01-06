@@ -13,7 +13,8 @@ const TipoState = props => {
            errores: false,
            errormsg: ""
     }   
-    const url= "http://localhost:4000"
+    //const url= "http://localhost:4000"
+    const url="https://tranquil-stream-66526.herokuapp.com"
       const [state,dispatch] = useReducer(TiposReducer,inicialState);
        useEffect(() => {
         consultarTipos()     

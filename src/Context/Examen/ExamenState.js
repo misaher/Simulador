@@ -9,6 +9,7 @@ import {
     NULL_EXAMEN,
     CONSULTAR_TIPOS,
     CONSULTAR_EXAMENES,
+    DELETE_EXAMEN,
     SETEARANULL
   }  from '../../../src/types/index'
 
@@ -21,7 +22,8 @@ const ExamenState = props => {
                mensajeError: ""
 
      } 
-     const url= "http://localhost:4000"
+     //const url= "http://localhost:4000"
+     const url="https://tranquil-stream-66526.herokuapp.com"
    //const  [state,dispatch] = useReducer(PreguntasReducer,InitialSate);
      const  [state,dispatch] = useReducer(ExamenReducer,InitialState);
 
@@ -173,17 +175,17 @@ const ExamenState = props => {
                               type: CONSULTAR_EXAMEN,
                               payload:mensa.revisiones
                           })
-                          dispatch({
+                         /*  dispatch({
                             type: EXITO_EXAMEN
 
-                          })
+                          })*/
                    }else if(status==400){
                     let mensa= await respon.json()
                     console.log("Error al agregar :(");
-                      dispatch({
+                      /* dispatch({
                            type: ERROR_EXAMEN,
                            payload: mensa.msg
-                      })
+                      })*/
                      console.log(mensa.msg)
                    }
                    
@@ -202,11 +204,43 @@ const ExamenState = props => {
      }
     
         const  borrarExamen = async (id_examen)=>{
-              try{
+               const {id} = id_examen;
+            let status;
+            try{   ///api/nombreexam
+                let respon = await  fetch(`${url}/api/revision`,{
+                     method: 'DELETE',
+                     body:   JSON.stringify(id_examen),
+                     headers:{
+                         'Content-Type': 'application/json'
+                     }   
+               })    
+                 status = respon.status;
+                          if(status==200){
+                             console.log("Agregado correctamente--------->>>>>  :)");
+                               dispatch({
+                                    type:  DELETE_EXAMEN ,
+                                    payload: id
+                                })
+                               dispatch({
+                                 type: EXITO_EXAMEN
+     
+                               })
+                        }else if(status==400){
+                         let mensa= await respon.json()
+                         console.log("Error al agregar :(");
+                           dispatch({
+                                type: ERROR_EXAMEN,
+                                payload: mensa.msg
+                           })
+                          console.log(mensa.msg)
+                        }
+                   
+                    
 
-              }catch(e){
-   
-              }
+
+          }catch(e){
+             
+          }
         }
      
       const  setEeroresandMesagesToNull =() =>{

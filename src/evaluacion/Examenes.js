@@ -8,7 +8,7 @@ const Examenes = () => {
      }, [])
     return (  <>
        <h1 className="text-3xl font-hight mb-10 text-center mt-10 ">Examnes Realizados</h1>
-       <div className="m-10 ">
+       <div className="m-10 flex justify-center">
         <table className="table-auto">
             <thead>
                 <tr>

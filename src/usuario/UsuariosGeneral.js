@@ -2,9 +2,9 @@
 import React,{useState,useEffect,useContext} from 'react';
 import UsuariosContext from  '../../src/Context/Usuarios/usuariosContext';
 import TabUsuarios  from './TabUsuarios';
-
+import BuscadorUsuario from  './buscador/BuscadorUsuario';
 const UsuariosGeneral = () => {
-     const  {ConsultarUsuarios,usuarios}  = useContext(UsuariosContext);
+     const  {ConsultarUsuarios,usuarios,filtrarUsu}  = useContext(UsuariosContext);
         useEffect(()=>{
             ConsultarUsuarios()
         },[])
@@ -14,6 +14,7 @@ const UsuariosGeneral = () => {
         <>
      
         <h1 className="text-3xl font-hight mb-4 text-center mt-10">Usuarios :)</h1>
+        {usuarios? <BuscadorUsuario/> : null} 
       {usuarios ?
       <div className="m-10">
         <table className="table-auto">
@@ -28,7 +29,7 @@ const UsuariosGeneral = () => {
             </thead>
 
     <tbody>
-    {usuarios.map(usuario=>(
+    {filtrarUsu.map(usuario=>(
                     <TabUsuarios
                     key={usuario._id}
                      usuario={usuario}

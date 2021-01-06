@@ -6,15 +6,18 @@ import {
     ALTA_USUARIO_MASIVA,
     CONSULTAR_USUARIOS,
     UPDATE_USUARIO,
-    DELETE_USUARIO
+    DELETE_USUARIO,
+    FILTRAR_USUARIOS
 
 } from '../../../src/types/index'
 
 const UsuarioState = props =>{
-     const url= "http://localhost:4000"
+     //const url= "http://localhost:4000"
+     const url="https://tranquil-stream-66526.herokuapp.com"
     ////
     const  initialState  ={
          usuarios:[],
+         filtrarUsu: [],
          error: false,
          msgerror: ""
     }
@@ -78,6 +81,13 @@ const UsuarioState = props =>{
 
            }
    }
+     const filtrarUsuarios = (nombre) =>{
+                  dispatch({
+                      type: FILTRAR_USUARIOS,
+                        payload : nombre
+                  })
+     }
+
   
     const UpdateUsuario =async(usuario) =>{
            console.log('Ok entrado a Udtae de usuario')
@@ -164,11 +174,13 @@ const UsuarioState = props =>{
    <UsuariosContext.Provider
       value={{
          usuarios: state.usuarios,
+         filtrarUsu: state.filtrarUsu,
         InsertarUsuario,
         ConsultarUsuarios,
         UpdateUsuario,
         EliminarUsuario,
-        CargaMasivaUsuarios
+        CargaMasivaUsuarios,
+        filtrarUsuarios
       }}
     >
      {props.children}

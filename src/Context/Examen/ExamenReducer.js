@@ -5,6 +5,7 @@ import {
     NULL_EXAMEN,
     CONSULTAR_TIPOS,
     CONSULTAR_EXAMENES,
+    DELETE_EXAMEN,
     SETEARANULL
   }   from '../../../src/types/index'
   export default (state,action)=>{
@@ -25,7 +26,13 @@ import {
                   ...state,
                   tiposExam  :action.payload
             }
-           
+             case DELETE_EXAMEN :
+                 return{
+                     ...state,
+                     examen: state.examen.filter(exam=>{
+                           return  exam._id != action.payload
+                     })
+                 }
         case  EXITO_EXAMEN:
             return{
                ...state,

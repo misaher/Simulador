@@ -8,6 +8,11 @@ const InformacionUsuario = () => {
    const {id}  = useParams();
    const   {editarExamen,borrarExamen,error,mensajeError,setEeroresandMesagesToNull,obtenerExamen,examen} = useContext(ExamenContext)
    const {nombre,email,_id} = JSON.parse(id);
+   const  datosEmail={
+          id :_id,
+          email :email
+   }
+   let IdMail =  JSON.stringify(datosEmail)
    console.log(id);
    useEffect(()=>{
     if(error==true){
@@ -28,7 +33,7 @@ const InformacionUsuario = () => {
            <h1 className="text-3xl font-hight mb-10 text-center mt-10 ">Usuario</h1>
              <div className="flex justify-center m-10">
              <div className="p-10 w-4/5 mb-4  flex space-x-2  justify-between  border-4 border-light-blue-500 border-opacity-0">
-                <Link to={`/AsignarExamen/${_id}`} className="bg-blue-800 hover:bg-blue-700, inline-block  p-2   text-white uppercase font-bold">Asignar Examen</Link>
+                <Link to={`/AsignarExamen/${IdMail}`} className="bg-blue-800 hover:bg-blue-700, inline-block  p-2   text-white uppercase font-bold">Asignar Examen</Link>
                 </div>
                 </div>
            <div className="flex justify-center m-10">   

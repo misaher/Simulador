@@ -23,7 +23,8 @@ const PreguntasState = props => {
               mensaje: ""
         }
         const  [state, dispatch]  = useReducer(PreguntasReducer,InitialSate);
-        const url= "http://localhost:4000"
+        //const url= "http://localhost:4000"
+        const url="https://tranquil-stream-66526.herokuapp.com"
 /////////
   
 //////////

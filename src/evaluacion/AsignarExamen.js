@@ -7,6 +7,9 @@ import {useParams}  from  'react-router-dom';
 const AsignarExamen = () => {
       const {asignarExamen,error,mensajeError,setEeroresandMesagesToNull} =useContext(ExamenContext) ;
       const   {id} = useParams();
+       const  imfoId = JSON.parse(id)
+       let id2 = imfoId.id;
+      const   {email}  =imfoId;
       useEffect(()=>{
               if(error==true){
                 Swal.fire({
@@ -28,7 +31,8 @@ const AsignarExamen = () => {
       },[error])
     const formik =  useFormik({
         initialValues:{
-            idUsuario:id,
+            idUsuario:id2,
+            email: email,
             nombre_eval:'',
             evaluar:true,
             numero_pre:'',

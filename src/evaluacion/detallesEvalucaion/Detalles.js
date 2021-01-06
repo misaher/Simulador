@@ -17,6 +17,7 @@ const Detalles = () => {
          <table className="table-auto">
              <thead>
                  <tr>
+                 <th className="border w-1/2 px-4 py-2">Email</th>
                  <th className="border w-1/2 px-4 py-2">No Preguntas</th>
                  <th className="border w-1/2 px-4 py-2">Calificación</th>  
                  <th className="border w-1/2 px-4 py-2">Estatus</th>   
